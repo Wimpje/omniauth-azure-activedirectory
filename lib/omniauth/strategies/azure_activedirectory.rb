@@ -172,7 +172,7 @@ module OmniAuth
           redirect_uri: redirect_uri,
           response_mode: response_mode,
           response_type: response_type,
-          state: 'http://localhost:9292'
+          state: state,
           nonce: new_nonce
         }.to_a
         # preserve existing URL params
@@ -201,6 +201,10 @@ module OmniAuth
 
       def redirect_uri
         options[:redirect_uri] || callback_url
+      end
+
+      def state
+        options[:state] || 'http://localhost:9292'
       end
 
       ##
