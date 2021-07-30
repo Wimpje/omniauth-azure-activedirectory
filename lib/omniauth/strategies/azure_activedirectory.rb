@@ -78,6 +78,7 @@ module OmniAuth
       credentials { { code: @code } }
       extra do
         { session_state: @session_state,
+          state: @state,
           raw_info:
             { id_token: @id_token,
               id_token_claims: @claims,
@@ -143,6 +144,7 @@ module OmniAuth
         end
 
         @session_state = request.params['session_state']
+        @state = request.params['state']
 
         unless @id_token = request.params['id_token'].presence
           return [ 400, {}, ["no id_token given"] ]
